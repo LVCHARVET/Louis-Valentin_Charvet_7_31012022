@@ -1,0 +1,37 @@
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const User = require('../models/user')
+const { AuthenticationError } = require('../error/customError')
+
+exports.login = async (req, res, next) => {
+
+    try {
+        const { email, password } = req.body
+
+        if (!email || !password) {
+            throw new AuthenticationError('Bad email or password', 0)
+        }
+
+        let user = await User.findOne({ where: { email: email }, raw: true })
+        if (user === null) {
+            throw new AuthenticationError('This account does not exists !', 1)
+        }
+
+        let test = await bcrypt.compare(password, user.password)
+        if (!test) {
+            throw new AuthenticationError('Wrong password', 2)
+        }
+
+        const token = jwt.sign({
+            id: user.id,
+            nom: user.nom,
+            prenom: user.prenom,
+            email: user.email
+        }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_DURING })
+
+        return res.json({ access_token: token })
+
+    } catch (err) {
+        next(err)
+    }
+}
