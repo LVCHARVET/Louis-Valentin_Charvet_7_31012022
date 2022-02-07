@@ -1,7 +1,10 @@
-const bcrypt = require('bcrypt')
+/* Import des modules */
+
 const jwt = require('jsonwebtoken')
 const User = require('../models/user')
 const { AuthenticationError } = require('../error/customError')
+
+/* Création et export de la fonction login */
 
 exports.login = async (req, res, next) => {
 
@@ -17,7 +20,11 @@ exports.login = async (req, res, next) => {
             throw new AuthenticationError('This account does not exists !', 1)
         }
 
-        let test = await bcrypt.compare(password, user.password)
+        /* System de compratif implémenté dans le models */
+
+        // let test = await bcrypt.compare(password, user.password)
+
+        let test = await User.checkPassword(password, user.password)
         if (!test) {
             throw new AuthenticationError('Wrong password', 2)
         }

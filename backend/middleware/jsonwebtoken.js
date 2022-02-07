@@ -1,4 +1,8 @@
+/* Import des modules */
+
 const jwt = require('jsonwebtoken')
+
+/* Extraction du Token */
 
 const extractBearer = authorization => {
     if (typeof authorization !== 'string') {
@@ -7,6 +11,8 @@ const extractBearer = authorization => {
     const matches = authorization.match(/(bearer)\s+(\S+)/i)
     return matches && matches[2]
 }
+
+/* Vérification de la présence du Token */
 
 const checkToken = (req, res, next) => {
     const token = req.headers.authorization && extractBearer(req.headers.authorization)
