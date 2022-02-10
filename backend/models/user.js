@@ -49,7 +49,7 @@ User.checkPassword = async (password, originel) => {
 
 /* Synchronisation du Model */
 
-User.sync()
+// User.sync()
 // User.sync({force: true})
 // User.sync({alter: true})
 
