@@ -1,32 +1,46 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
+      <router-link to="/"><!--<img src="assets/icon.png">-->Home</router-link> |
       <router-link to="/user">Profil</router-link> |
-      <router-link to="/signup">Signup</router-link>
+      <router-link to="/signup">S'inscrire</router-link>
     </div>
     <router-view />
   </div>
 </template>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@100&display=swap');
+@import "sass/color";
+body {  
+  background: no-repeat url("assets/background.png");
+  background-size: 100%;
+  background-color: grey;
+  font-size: 2em;
+  color: white;
+  
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  font-family: 'Overpass', sans-serif;
+  
 }
 
 #nav {
-  padding: 30px;
+  background-color: $primary-color;
+  width: 40%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 
   a {
-    font-weight: bold;
-    color: #2c3e50;
+    text-decoration: none;
+    font-weight: bold;    
+    color: white;
+    font-size: 50px;
 
     &.router-link-exact-active {
-      color: #42b983;
+      color: red;
     }
   }
 }

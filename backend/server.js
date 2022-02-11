@@ -26,7 +26,7 @@ const auth_router = require('./routes/auth')
 
 app.get('/', (req, res) => res.send("I'm online, well done"))
 
-app.use('/users', checkToken, user_router)
+app.use('/users', /*checkToken,*/ user_router)
 app.use('/auth', auth_router)
 
 app.get('*', (req, res) => res.status(501).send("What the hell are you doing !?!"))
