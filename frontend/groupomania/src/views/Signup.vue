@@ -30,6 +30,9 @@
           id="password"
         />
       </div>
+      <p id="msg_error" v-if="this.$store.state.invalidInfo != null">
+        {{ this.$store.state.invalidInfo }}
+      </p>
       <button id="submit" type="submit">S'enregistrer</button>
     </form>
     <p id="mention">(* Mentions obligatoires)</p>
@@ -40,6 +43,7 @@
 
 <script>
 import axios from "axios";
+import router from "../router";
 export default {
   name: "signup",
   components: {},
@@ -53,13 +57,23 @@ export default {
   },
   methods: {
     newUser() {
-      axios.put("http://localhost:8888/users", {
-        prenom: this.prenom,
-        nom: this.nom,
-        email: this.email,
-        password: this.password,
-      });
+      axios
+        .put("http://localhost:8888/users", {
+          prenom: this.prenom,
+          nom: this.nom,
+          email: this.email,
+          password: this.password,
+        })
+        .then(() => {
+          router.push("/");
+        })
+        .catch(() => {
+          this.$store.state.invalidInfo = "Ce compte existe déjà !";
+        });
     },
+  },
+  mounted() {
+    this.$store.state.invalidInfo = null;
   },
 };
 </script>
@@ -110,8 +124,17 @@ input {
     font-weight: bold;
     background-color: white;
     color: red;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+      rgba(0, 0, 0, 0.22) 0px 15px 12px;
   }
+}
+
+#msg_error {
+  display: flex;
+  justify-content: center;
+  color: red;
+  font-weight: bold;
+  font-size: 1.5em; 
 }
 
 #mention {
