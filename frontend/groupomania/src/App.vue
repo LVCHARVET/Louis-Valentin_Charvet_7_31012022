@@ -3,7 +3,8 @@
     <div id="nav">
       <router-link to="/"><!--<img src="assets/icon.png">-->Home</router-link> |
       <router-link to="/user">Profil</router-link> |
-      <router-link to="/signup">S'inscrire</router-link>
+      <router-link to="/signup">S'inscrire</router-link> |
+      <router-link to="/login">Se connecter</router-link>
     </div>
     <router-view />
   </div>
@@ -28,7 +29,7 @@ body {
 
 #nav {
   background-color: $primary-color;
-  width: 40%;
+  width: 70%;
   display: flex;
   justify-content: space-around;
   align-items: center;
