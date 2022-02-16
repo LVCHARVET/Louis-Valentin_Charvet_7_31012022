@@ -65,7 +65,7 @@ export default {
           password: this.password,
         })
         .then(() => {
-          router.push("/");
+          router.push("/login");
         })
         .catch(() => {
           this.$store.state.invalidInfo = "Ce compte existe déjà !";
