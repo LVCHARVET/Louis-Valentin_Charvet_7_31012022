@@ -17,14 +17,14 @@
         <input required type="text" name="nom" v-model="nom" id="nom" />
       </div>
       <div class="form-container">
-        <label for="email">Adresse mail * :</label>
+        <label for="email">Adresse email * :</label>
         <input required type="text" name="email" v-model="email" id="email" />
       </div>
       <div class="form-container">
         <label for="password">Mot de passe * :</label>
         <input
           required
-          type="text"
+          type="password"
           name="password"
           v-model="password"
           id="password"

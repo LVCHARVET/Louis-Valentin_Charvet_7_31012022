@@ -3,14 +3,14 @@
     <h1 id="titre">Connectez-vous !</h1>
     <form id="form" method="post" @submit.prevent="loginUser">
       <div class="form-container">
-        <label for="email">Adresse mail * :</label>
+        <label for="email">Adresse email :</label>
         <input required type="text" name="email" v-model="email" id="email" />
       </div>
       <div class="form-container">
-        <label for="password">Mot de passe * :</label>
+        <label for="password">Mot de passe :</label>
         <input
           required
-          type="text"
+          type="password"
           name="password"
           v-model="password"
           id="password"
@@ -26,7 +26,7 @@
 
 <script>
 import axios from "axios";
-import router from "../router"
+import router from "../router";
 export default {
   name: "Login",
   components: {},
