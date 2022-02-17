@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/"><!--<img src="assets/icon.png">-->Home</router-link> |
+      <!--<img src="./assets/icon.png">-->
+      <router-link to="/">Home</router-link> |
       <router-link to="/user">Profil</router-link> |
       <router-link to="/signup">S'inscrire</router-link> |
       <router-link to="/login">Se connecter</router-link>

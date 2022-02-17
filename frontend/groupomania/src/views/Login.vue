@@ -16,8 +16,8 @@
           id="password"
         />
       </div>
-      <p id="msg_error" v-if="this.$store.state.invalidInfo != null">
-        {{ this.$store.state.invalidInfo }}
+      <p id="msg_error" v-if="getInvalidInfo">
+        {{ getInvalidInfo }}
       </p>
       <button id="submit" type="submit">Connexion</button>
     </form>
@@ -25,34 +25,24 @@
 </template>
 
 <script>
-import axios from "axios";
-import router from "../router";
+import { mapGetters } from "vuex";
 export default {
   name: "Login",
   components: {},
   data() {
     return {
       email: "",
-      password: "",
-    };
+      password: ""
+    }
   },
   methods: {
     loginUser() {
-      axios
-        .post("http://localhost:8888/auth/login", {
-          email: this.email,
-          password: this.password,
-        })
-        .then(() => {
-          router.push("/user");
-        })
-        .catch(() => {
-          this.$store.state.invalidInfo = "Email ou mot de passe incorrect !";
-        });
-    },
+      this.$store.dispatch('login', {email: this.email, password: this.password})
+    }
+    
   },
-  mounted() {
-    this.$store.state.invalideInfo = null;
+  computed: {
+    ...mapGetters(["getInvalidInfo"]),
   },
 };
 </script>

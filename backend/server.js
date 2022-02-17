@@ -2,7 +2,6 @@
 
 const express = require('express')
 const cors = require('cors')
-const checkToken = require('./middleware/jsonwebtoken')
 const errorHandler = require('./error/errorHandler')
 
 /* Import de la connexion à la Database */
@@ -26,7 +25,7 @@ const auth_router = require('./routes/auth')
 
 app.get('/', (req, res) => res.send("I'm online, well done"))
 
-app.use('/users', /*checkToken,*/ user_router)
+app.use('/users', user_router)
 app.use('/auth', auth_router)
 
 app.get('*', (req, res) => res.status(501).send("What the hell are you doing !?!"))

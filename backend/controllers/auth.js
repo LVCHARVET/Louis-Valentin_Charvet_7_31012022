@@ -35,8 +35,15 @@ exports.login = async (req, res, next) => {
             prenom: user.prenom,
             email: user.email
         }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_DURING })
+        
+        let simpleUser = {
+            id: user.id,
+            nom: user.nom,
+            prenom: user.prenom,
+            email: user.email
+        }
 
-        return res.json({ access_token: token })
+        return res.json({ access_token: token, user: simpleUser })
 
     } catch (err) {
         next(err)
