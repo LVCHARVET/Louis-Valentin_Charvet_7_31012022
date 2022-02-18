@@ -93,6 +93,9 @@ export default {
   display: flex;
   justify-content: center;
   padding-top: 1%;
+  @media screen and (max-width: 460px) {
+    font-size: 1.3em;
+  }
 }
 
 #form {
@@ -104,11 +107,22 @@ export default {
   flex-direction: column;
   align-items: center;
   margin-bottom: 2%;
+  @media screen and (max-width: 850px) {
+    margin-bottom: 5%;
+  }
 }
 
 input {
   width: 20%;
   height: 20px;
+  @media screen and (max-width: 1100px) {
+    width: 50%;
+    height: 50%;
+  }
+  @media screen and (max-width: 460px) {
+    width: 75%;
+    height: 75%;
+  }
 }
 
 #submit {
@@ -126,6 +140,25 @@ input {
     color: red;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
       rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  }
+  @media screen and (max-width: 1500px) {
+    width: 15%;
+    left: 43%;
+  }
+  @media screen and (max-width: 1024px) {
+    width: 20%;
+    left: 40%;
+  }
+  @media screen and (max-width: 750px) {
+    width: 25%;
+    left: 37%;
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 1.1rem;
+  }
+  @media screen and (max-width: 460px) {
+    width: 30%;
+    left: 35%;
   }
 }
 

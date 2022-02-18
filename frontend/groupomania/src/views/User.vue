@@ -1,6 +1,7 @@
 <template>
   <div class="user" v-if="user">
-    <h1>Hello : {{ user.prenom }}</h1>
+    <h1 id="hello_name">Hello {{ user.prenom + " " + user.nom }}</h1>
+    <p id="wellcome_msg">Bienvenu sur votre page de profil !</p>
   </div>
 </template>
 
@@ -14,7 +15,7 @@ export default {
       () => {
         this.fetchData();
       },
-      { immediate: true }
+      { immediate: true },
     );
   },
   components: {},
@@ -28,3 +29,21 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.user {
+  margin-top: 2%;
+  color: white;
+  background-color: #002a5594;
+  padding-bottom: 1px;
+}
+
+#hello_name {
+  text-align: center;
+  padding-top: 2%;
+}
+
+#wellcome_msg {
+  text-align: center;
+}
+</style>

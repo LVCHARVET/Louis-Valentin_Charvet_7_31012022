@@ -33,14 +33,16 @@ exports.login = async (req, res, next) => {
             id: user.id,
             nom: user.nom,
             prenom: user.prenom,
-            email: user.email
+            email: user.email,
+            profilpicture: user.profilpicture
         }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_DURING })
         
         let simpleUser = {
             id: user.id,
             nom: user.nom,
             prenom: user.prenom,
-            email: user.email
+            email: user.email,
+            profilpicture: user.profilpicture
         }
 
         return res.json({ access_token: token, user: simpleUser })

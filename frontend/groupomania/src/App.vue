@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <div id="nav">
-      <!--<img src="./assets/icon.png">-->
       <router-link to="/">Home</router-link> |
       <router-link to="/user">Profil</router-link> |
       <router-link to="/signup">S'inscrire</router-link> |
@@ -19,8 +18,7 @@ body {
   background-size: 100%;
   background-color: grey;
   font-size: 2em;
-  color: white;
-  
+  color: white;  
 }
 
 #app {
@@ -30,7 +28,7 @@ body {
 
 #nav {
   background-color: $primary-color;
-  width: 70%;
+  height: 60px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -39,11 +37,23 @@ body {
     text-decoration: none;
     font-weight: bold;    
     color: white;
-    font-size: 50px;
+    font-size: 1.1em;
 
     &.router-link-exact-active {
       color: red;
     }
   }
+  @media screen and (max-width: 1024px) {
+    flex-wrap: wrap;
+    height: 100px;
+  }
 }
+
+#logo_left_nav {
+  width: 10%;
+  @media screen and (max-width: 1024px) {
+    visibility: hidden;  
+  }
+}
+
 </style>
