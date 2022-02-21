@@ -5,22 +5,31 @@ import router from '../router'
 export default createStore({
   state: {
     invalidInfo: null,
-    user: null
+    userInfo: null,    
   },
   getters: {
     getUser(state) {
-      return state.user
+      return state.userInfo.user
     },
     getInvalidInfo(state) {
       return state.invalidInfo
+    },
+    isLoggedIn(state) {
+      return !!state.userInfo
     }
   },
   mutations: {
+    initialize(state) {
+      state.userInfo = JSON.parse(localStorage.getItem('userInfo'))
+    },
     setUser(state, user) {
-      state.user = user
+      state.userInfo = user
     },
     setInvalidInfo(state, invalidInfo) {
       state.invalidInfo = invalidInfo
+    },
+    logout(state) {
+      state.userInfo = null
     }
   },
   actions: {
@@ -31,13 +40,19 @@ export default createStore({
           password: password,
         })
         .then((res) => {
-          commit('setUser', res.data.user)
-          localStorage.setItem('token', res.data.access_token)
-          router.push("/user");
+          let userInfo = { user: res.data.user, token: res.data.access_token }
+          commit('setUser', userInfo)
+          localStorage.setItem('userInfo', JSON.stringify(userInfo))
+          router.push({name: "User", params: {user: res.data.user}});
         })
         .catch(() => {
           commit('setInvalidInfo', "Email ou mot de passe incorrect !")
         });
+    },
+    logout({ commit }) {
+      localStorage.removeItem("userInfo")
+      commit('logout')
+      router.push('/')
     }
   },
   modules: {

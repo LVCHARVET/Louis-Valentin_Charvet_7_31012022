@@ -49,10 +49,4 @@ export default {
 
 <style lang="scss">
 @import "../sass/color";
-.login {
-  margin-top: 2%;
-  color: white;
-  background-color: #002a5594;
-  padding-bottom: 1px;
-}
 </style>

@@ -55,8 +55,15 @@ exports.addUser = async (req, res, next) => {
         // let hash = await bcrypt.hash(password, parseInt(process.env.BCRYPT_SALT_ROUND))
         // req.body.password = hash
 
+        let simpleUser = {
+            id: user.id,
+            nom: user.nom,
+            prenom: user.prenom,
+            email: user.email,
+        }
+
         user = await User.create(req.body)
-        return res.json({ message: 'User Created', data: user })
+        return res.json({ message: 'User Created', data: simpleUser })
 
     } catch (err) {
         next(err)
@@ -80,7 +87,14 @@ exports.updateUser = async (req, res, next) => {
         }
 
         await User.update(req.body, { where: { id: userId } })
-        return res.json({ message: 'User Updated' })
+        
+        let simpleUser = {
+            id: user.id,
+            nom: user.nom,
+            prenom: user.prenom,
+            email: user.email,
+        }
+        return res.json({ message: 'User Updated', data: simpleUser })
 
     } catch (err) {
         next(err)

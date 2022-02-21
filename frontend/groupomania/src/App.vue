@@ -1,59 +1,25 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/user">Profil</router-link> |
-      <router-link to="/signup">S'inscrire</router-link> |
-      <router-link to="/login">Se connecter</router-link>
-    </div>
-    <router-view />
+    <Nav />
+    <router-view class="container-fluid"/>
   </div>
 </template>
 
+<script>
+import Nav from "./components/Nav.vue";
+export default {
+  name: "App",
+  components: {
+    Nav,
+  },
+  beforeCreate() {
+    this.$store.commit('initialize')
+  }
+};
+</script>
+
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@100&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Overpass:wght@100&display=swap");
 @import "sass/color";
-body {  
-  background: no-repeat url("assets/background.png");
-  background-size: 100%;
-  background-color: grey;
-  font-size: 2em;
-  color: white;  
-}
-
-#app {
-  font-family: 'Overpass', sans-serif;
-  
-}
-
-#nav {
-  background-color: $primary-color;
-  height: 60px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-
-  a {
-    text-decoration: none;
-    font-weight: bold;    
-    color: white;
-    font-size: 1.1em;
-
-    &.router-link-exact-active {
-      color: red;
-    }
-  }
-  @media screen and (max-width: 1024px) {
-    flex-wrap: wrap;
-    height: 100px;
-  }
-}
-
-#logo_left_nav {
-  width: 10%;
-  @media screen and (max-width: 1024px) {
-    visibility: hidden;  
-  }
-}
-
+@import '~bootstrap/dist/css/bootstrap.css';
 </style>
