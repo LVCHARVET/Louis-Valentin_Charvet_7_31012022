@@ -1,5 +1,5 @@
 <template>
-  <div class="user" v-if="user">
+  <section class="user" v-if="user">
     <h1 id="hello_name">Hello {{ user.prenom + " " + user.nom }}</h1>
     <p id="wellcome_msg">Bienvenu sur votre page de profil !</p>
     <button @click="toggle">Modifier le profil</button>
@@ -37,7 +37,7 @@
       {{ this.$store.state.invalidInfo }}
     </p>
     <button @click="deleteUser">Supprimer le compte</button>
-  </div>
+  </section>
 </template>
 
 <script>

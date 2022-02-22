@@ -1,5 +1,5 @@
 <template>
-  <div class="col bg-dark">
+  <header class="col bg-dark">
     <div class="p-3">
       <nav class="nav nav-pills flex-column flex-sm-row">
         <router-link
@@ -34,7 +34,7 @@
         </button>
       </nav>
     </div>
-  </div>
+  </header>
 </template>
 
 <script>

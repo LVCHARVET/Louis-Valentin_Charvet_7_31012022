@@ -1,5 +1,5 @@
 <template>
-  <div class="signup">
+  <section class="signup">
     <h1 id="titre">Inscrivez-vous !</h1>
     <form id="form" method="put" @submit.prevent="newUser">
       <div class="form-container">
@@ -36,7 +36,7 @@
       <button id="submit" type="submit">S'enregistrer</button>
     </form>
     <p id="mention">(* Mentions obligatoires)</p>
-  </div>
+  </section>
 </template>
 
 

@@ -1,8 +1,8 @@
 <template>
-  <div id="app">
+  <body id="app">
     <Nav />
-    <router-view class="container-fluid"/>
-  </div>
+    <router-view class="container-fluid" />
+  </body>
 </template>
 
 <script>
@@ -13,13 +13,13 @@ export default {
     Nav,
   },
   beforeCreate() {
-    this.$store.commit('initialize')
-  }
+    this.$store.commit("initialize");
+  },
 };
 </script>
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Overpass:wght@100&display=swap");
 @import "sass/color";
-@import '~bootstrap/dist/css/bootstrap.css';
+@import "~bootstrap/dist/css/bootstrap.css";
 </style>

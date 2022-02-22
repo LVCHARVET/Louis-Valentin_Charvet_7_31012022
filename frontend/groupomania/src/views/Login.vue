@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <section class="login">
     <h1 id="titre">Connectez-vous !</h1>
     <form id="form" method="post" @submit.prevent="loginUser">
       <div class="form-container">
@@ -21,7 +21,7 @@
       </p>
       <button id="submit" type="submit">Connexion</button>
     </form>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -32,14 +32,16 @@ export default {
   data() {
     return {
       email: "",
-      password: ""
-    }
+      password: "",
+    };
   },
   methods: {
     loginUser() {
-      this.$store.dispatch('login', {email: this.email, password: this.password})
-    }
-    
+      this.$store.dispatch("login", {
+        email: this.email,
+        password: this.password,
+      });
+    },
   },
   computed: {
     ...mapGetters(["getInvalidInfo"]),

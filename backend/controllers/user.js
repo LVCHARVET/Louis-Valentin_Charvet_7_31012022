@@ -54,6 +54,8 @@ exports.addUser = async (req, res, next) => {
 
         // let hash = await bcrypt.hash(password, parseInt(process.env.BCRYPT_SALT_ROUND))
         // req.body.password = hash
+        
+        user = await User.create(req.body)
 
         let simpleUser = {
             id: user.id,
@@ -62,8 +64,7 @@ exports.addUser = async (req, res, next) => {
             email: user.email,
         }
 
-        user = await User.create(req.body)
-        return res.json({ message: 'User Created', data: simpleUser })
+        return res.json({ message: 'User Created', user: simpleUser})
 
     } catch (err) {
         next(err)
