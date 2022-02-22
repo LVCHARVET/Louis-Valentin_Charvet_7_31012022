@@ -11,6 +11,9 @@ export default createStore({
     getUser(state) {
       return state.userInfo.user
     },
+    getToken(state) {
+      return state.userInfo.token
+    },
     getInvalidInfo(state) {
       return state.invalidInfo
     },

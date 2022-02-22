@@ -87,6 +87,8 @@ exports.updateUser = async (req, res, next) => {
         }
 
         await User.update(req.body, { where: { id: userId } })
+
+        user = await User.findOne({ where: { id: userId }, raw: true })
         
         let simpleUser = {
             id: user.id,
@@ -94,11 +96,13 @@ exports.updateUser = async (req, res, next) => {
             prenom: user.prenom,
             email: user.email,
         }
-        return res.json({ message: 'User Updated', data: simpleUser })
+
+        return res.json({ message: 'User Updated', user: simpleUser })
 
     } catch (err) {
         next(err)
     }
+
 }
 
 /* Création et export de la fonction untrashUser */
