@@ -36,6 +36,11 @@ exports.login = async (req, res, next) => {
             email: user.email,
         }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_DURING })
         
+        const refreshToken = jwt.sign({
+            id: user.id
+        }, process.env.JWT_SECRET, { expiresIn: '24h' })
+
+        
         let simpleUser = {
             id: user.id,
             nom: user.nom,
@@ -43,9 +48,28 @@ exports.login = async (req, res, next) => {
             email: user.email,
         }
 
-        return res.json({ access_token: token, user: simpleUser })
+        return res.json({ accessToken: token, refreshToken : refreshToken, user: simpleUser })
 
     } catch (err) {
         next(err)
     }
 }
+
+exports.refresh = (req, res, next) => {
+    User.findOne({ where: { id: req.body.id }, raw: true })
+        .then((user) => {
+
+            // ici test si user n'est pas vide
+
+            // génération du nouveau token principal
+            const token = jwt.sign({
+                id: user.id,
+                nom: user.nom,
+                prenom: user.prenom,
+                email: user.email,
+            }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_DURING })
+
+            return res.json({ accessToken: token })
+        })
+        .catch(error => res.status(500).json({ error }));
+};

@@ -58,6 +58,7 @@ export default {
   methods: {
     newUser() {
       axios
+        .create()
         .put("http://localhost:8888/users", {
           prenom: this.prenom,
           nom: this.nom,
@@ -77,8 +78,6 @@ export default {
   },
 };
 </script>
-
-
 
 <style lang="scss">
 @import "../sass/color";

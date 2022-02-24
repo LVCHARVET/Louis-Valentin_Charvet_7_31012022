@@ -10,9 +10,9 @@ let router = express.Router()
 
 /* Routage User */
 
-router.get('/', userCtrl.getAllUsers)
+router.get('/', checkToken, userCtrl.getAllUsers)
 
-router.get('/:id', userCtrl.getOneUser)
+router.get('/:id', checkToken, userCtrl.getOneUser)
 
 router.put('', userCtrl.addUser)
 

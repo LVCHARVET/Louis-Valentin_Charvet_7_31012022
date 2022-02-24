@@ -22,26 +22,28 @@
         <label for="email">Nouvelle adresse email :</label>
         <input
           required
-          type="text"
+          type="email"
           name="email"
           v-model="newEmail"
           id="email"
         />
       </div>
-      <p id="msg_error" v-if="this.$store.state.invalidInfo != null">
+      <div
+        id="msg_error"
+        v-if="this.$store.state.invalidInfo"
+        class="alert alert-danger"
+        role="alert"
+      >
         {{ this.$store.state.invalidInfo }}
-      </p>
+      </div>
       <button id="submit" type="submit">Enregistrer</button>
     </form>
-    <p id="msg_error" v-if="this.$store.state.invalidInfo != null">
-      {{ this.$store.state.invalidInfo }}
-    </p>
     <button @click="deleteUser">Supprimer le compte</button>
   </section>
 </template>
 
 <script>
-import axios from "axios";
+import { axiosApiInstance } from "../_helpers/index";
 import { mapGetters } from "vuex";
 export default {
   name: "User",
@@ -66,34 +68,27 @@ export default {
       this.user = this.getUser;
     },
     editUser() {
-      axios
-        .patch(
-          "http://localhost:8888/users/" + this.user.id,
-          {
-            prenom: this.newPrenom,
-            nom: this.newNom,
-            email: this.newEmail,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${this.getToken}`,
-            },
-          }
-        )
+      axiosApiInstance
+        .patch("http://localhost:8888/users/" + this.user.id, {
+          prenom: this.newPrenom,
+          nom: this.newNom,
+          email: this.newEmail,
+        })
         .then((res) => {
           this.user = res.data.user;
+          this.$store.state.invalidInfo = "Utilisateur modifié !";
         })
-        .catch(() => {
-          this.$store.state.invalidInfo = "Erreur de modification";
+        .catch((err) => {
+          if (err.response.status === 401) {
+            this.$store.state.invalidInfo = "Token incorrect ou expiré";
+          } else {
+            this.$store.state.invalidInfo = "Erreur de modification";
+          }
         });
     },
     deleteUser() {
-      axios
-        .delete("http://localhost:8888/users/" + this.user.id, {
-          headers: {
-            Authorization: `Bearer ${this.getToken}`,
-          },
-        })
+      axiosApiInstance
+        .delete("http://localhost:8888/users/" + this.user.id)
         .then(() => {
           this.$store.dispatch("logout");
         })

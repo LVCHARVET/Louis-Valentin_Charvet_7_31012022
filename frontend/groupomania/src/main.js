@@ -3,20 +3,12 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import 'bootstrap'
-// import axios from 'axios'
+// import { jwtInterceptor, errorInterceptor } from './_helpers'
+
 
 const app = createApp(App);
 
-// axios.interceptors.request.use(request => {
-//     const token = localStorage.getItem("token");
-//     //console.log(token);
-//     if (request.url.includes('/auth/login')) {
-//         return request
-//     }
-//     if (token) {
-//         request.headers["Authorization"] = 'Bearer ' + token;
-//     }
-//     return
-// });
+// jwtInterceptor()
+// errorInterceptor()
 
 app.use(store).use(router).mount('#app')
