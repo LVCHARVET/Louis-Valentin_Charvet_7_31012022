@@ -1,35 +1,35 @@
 <template>
-  <header class="col bg-dark">
+  <header>
     <div class="p-3">
-      <nav class="nav nav-pills flex-column flex-sm-row">
+      <nav class="nav nav-pills flex-column flex-sm-row space-between">
         <router-link
           :class="{ active: path === '/' }"
-          class="flex-sm-fill text-sm-center nav-link"
+          class="flex-sm-fill text-sm-center nav-link text-center border border-primary m-1"
           to="/"
           >Home</router-link
         >
         <router-link
           :class="{ active: path === '/user' }"
-          class="flex-sm-fill text-sm-center nav-link"
+          class="flex-sm-fill text-sm-center nav-link text-center border border-primary m-1"
           to="/user"
           v-if="isLoggedIn"
           >Profil</router-link
         >
         <router-link
           :class="{ active: path === '/signup' }"
-          class="flex-sm-fill text-sm-center nav-link"
+          class="flex-sm-fill text-sm-center nav-link text-center border border-primary m-1"
           to="/signup"
           v-if="!isLoggedIn"
           >S'inscrire</router-link
         >
         <router-link
           :class="{ active: path === '/login' }"
-          class="flex-sm-fill text-sm-center nav-link"
+          class="flex-sm-fill text-sm-center nav-link text-center border border-primary m-1"
           to="/login"
           v-if="!isLoggedIn"
           >Se connecter</router-link
         >
-        <button class="btn btn-danger" @click="logout" v-if="isLoggedIn">
+        <button id="logout_btn" class="btn btn-danger m-1" @click="logout" v-if="isLoggedIn">
           déconnexion
         </button>
       </nav>
@@ -69,4 +69,8 @@ export default {
 
 <style lang="scss">
 @import "../sass/color";
+nav {
+  font-size: 2em;
+  font-weight: bold;
+}
 </style>

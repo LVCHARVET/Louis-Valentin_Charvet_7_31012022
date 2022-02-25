@@ -32,9 +32,7 @@ axiosApiInstance.interceptors.response.use((response) => {
         const toExp = decode.exp
         const originalRequest = error.config
 
-        if (error.response.status === 401 && !originalRequest._retry) { // Token Expiré
-
-            //Je récupère le temps 
+        if (error.response.status === 401 && !originalRequest._retry) {
 
             if (now < toExp + (5 * 60)) {
                 originalRequest._retry = true;
@@ -46,7 +44,6 @@ axiosApiInstance.interceptors.response.use((response) => {
             }
 
         }
-
 
     } catch (e) {
         logout()

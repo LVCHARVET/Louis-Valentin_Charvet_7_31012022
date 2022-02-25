@@ -1,10 +1,10 @@
 import { createStore } from 'vuex'
-//import axios from 'axios'
 import router from '../router'
 
 export default createStore({
   state: {
     invalidInfo: null,
+    validInfo:null,
     userInfo: null,
   },
   getters: {
