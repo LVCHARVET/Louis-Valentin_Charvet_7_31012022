@@ -10,7 +10,20 @@
       <button class="btn btn-warning m-3" @click="toggle">
         Modifier le profil
       </button>
-      <form id="form_edit_user" v-show="show" class="container col-sm-10 col-md-8 col-lg-6 bg-white mb-3 p-4 border border-2 border-danger rounded " @submit.prevent="editUser">
+      <form
+        id="form_edit_user"
+        v-show="show"
+        class="
+          container
+          col-sm-10 col-md-8 col-lg-6
+          bg-white
+          mb-3
+          p-4
+          border border-2 border-danger
+          rounded
+        "
+        @submit.prevent="editUser"
+      >
         <div class="form-container">
           <label for="prenom" class="form-label">Nouveau prenom : </label>
           <input
@@ -24,7 +37,14 @@
         </div>
         <div class="form-container">
           <label for="nom" class="form-label">Nouveau nom :</label>
-          <input required type="text" name="nom" v-model="newNom" id="nom" class="form-control mb-3 w-50"/>
+          <input
+            required
+            type="text"
+            name="nom"
+            v-model="newNom"
+            id="nom"
+            class="form-control mb-3 w-50"
+          />
         </div>
         <div class="form-container">
           <label for="email" class="form-label">Nouvelle adresse email :</label>
@@ -53,7 +73,9 @@
         >
           {{ this.$store.state.validInfo }}
         </div>
-        <button id="submit" type="submit" class="btn btn-primary">Enregistrer</button>
+        <button id="submit" type="submit" class="btn btn-primary">
+          Enregistrer
+        </button>
       </form>
       <button class="btn btn-danger m-3" @click="deleteUser">
         Supprimer le compte
@@ -79,7 +101,7 @@ export default {
   created() {
     this.user = this.getUser;
     this.$store.state.invalidInfo = null;
-    this.$store.state.validInfo = null  
+    this.$store.state.validInfo = null;
   },
   components: {},
   methods: {
@@ -113,15 +135,18 @@ export default {
         });
     },
     deleteUser() {
-      axiosApiInstance
-        .delete("http://localhost:8888/users/" + this.user.id)
-        .then(() => {
-          this.$store.dispatch("logout");
-        })
-        .catch(() => {
-          this.$store.state.invalidInfo =
-            "Vous ne pouvez pas supprimer ce compte";
-        });
+      let res = confirm("Êtes vous sûr de vouloir supprimer ce compte ?")
+      if (res) {
+        axiosApiInstance
+          .delete("http://localhost:8888/users/" + this.user.id)
+          .then(() => {
+            this.$store.dispatch("logout");
+          })
+          .catch(() => {
+            this.$store.state.invalidInfo =
+              "Vous ne pouvez pas supprimer ce compte";
+          });
+      }
     },
   },
   mounted() {
