@@ -119,11 +119,9 @@ export default {
           email: this.newEmail,
         })
         .then(() => {
-          this.user = {
-            prenom: this.newPrenom,
-            nom: this.newNom,
-            email: this.newEmail,
-          };
+          this.user.prenom = this.newPrenom;
+          this.user.nom = this.newNom;
+          this.user.email = this.newEmail;
           this.$store.state.validInfo = "Utilisateur modifié !";
         })
         .catch((err) => {
@@ -135,7 +133,7 @@ export default {
         });
     },
     deleteUser() {
-      let res = confirm("Êtes vous sûr de vouloir supprimer ce compte ?")
+      let res = confirm("Êtes vous sûr de vouloir supprimer ce compte ?");
       if (res) {
         axiosApiInstance
           .delete("http://localhost:8888/users/" + this.user.id)

@@ -4,33 +4,33 @@
       <nav class="nav nav-pills flex-column flex-sm-row space-between">
         <router-link
           :class="{ active: path === '/' }"
-          class="flex-sm-fill text-sm-center nav-link text-center border border-primary m-1"
+          class="flex-sm-fill text-white text-sm-center nav-link text-center border border-white m-1"
           to="/"
           >Home</router-link
         >
         <router-link
           :class="{ active: path === '/user' }"
-          class="flex-sm-fill text-sm-center nav-link text-center border border-primary m-1"
+          class="flex-sm-fill text-white text-sm-center nav-link text-center border border-white m-1"
           to="/user"
           v-if="isLoggedIn"
           >Profil</router-link
         >
         <router-link
           :class="{ active: path === '/signup' }"
-          class="flex-sm-fill text-sm-center nav-link text-center border border-primary m-1"
+          class="flex-sm-fill text-white text-sm-center nav-link text-center border border-white m-1"
           to="/signup"
           v-if="!isLoggedIn"
           >S'inscrire</router-link
         >
         <router-link
           :class="{ active: path === '/login' }"
-          class="flex-sm-fill text-sm-center nav-link text-center border border-primary m-1"
+          class="flex-sm-fill text-white text-sm-center nav-link text-center border border-white m-1"
           to="/login"
           v-if="!isLoggedIn"
           >Se connecter</router-link
         >
         <button id="logout_btn" class="btn btn-danger m-1" @click="logout" v-if="isLoggedIn">
-          déconnexion
+          Déconnexion
         </button>
       </nav>
     </div>
@@ -59,7 +59,6 @@ export default {
     this.$watch(
       () => this.$route.path,
       (path) => {
-        console.log(path);
         this.path = path;
       }
     );
@@ -72,5 +71,8 @@ export default {
 nav {
   font-size: 2em;
   font-weight: bold;
+}
+#logout_btn {
+  font-size: 0.9em;
 }
 </style>

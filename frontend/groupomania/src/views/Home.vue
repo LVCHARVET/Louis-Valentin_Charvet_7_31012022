@@ -4,7 +4,7 @@
       <img
         class="rounded img-fluid d-block mx-auto p-100 p-5"
         src="../assets/icon-left-font-monochrome-white.svg"
-        alt=""
+        alt="logo de l'entreprise groupomania"
       />
       <h1 id="home_msg" class="text-center text-white p-5">
         Bienvenu sur le réseau social dédié aux employés de Groupomania !
