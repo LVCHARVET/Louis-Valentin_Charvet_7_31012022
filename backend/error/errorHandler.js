@@ -1,9 +1,11 @@
+/* Création d'un system de "censure" des erreurs */
+
 const errorHandler = (err, req, res, next) => {
 
     // 0 - Message simple
     // 1 - Message sans error
     // 2 - Toutes les informations
-    debugLevel = 2
+    debugLevel = 0
     message = {}
 
     switch (debugLevel) {
