@@ -1,3 +1,4 @@
+/* Création d'un system de gestion/définition des erreurs */
 class MainError extends Error {
 
     constructor(errorMessage, errorType = '') {
